@@ -1,5 +1,8 @@
 package basics;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Author : Aniruddha Kudalkar
  * Array Operation with O(n) efficiency
@@ -70,20 +73,47 @@ public class Main {
         // = o(1) + o(n) * o(1) = o(n)
     }
 
+    public void assignmentStringSortCount(String str) {
+        //"bebraba"
+        // a-2,b-3,e-1,r-1
+        // a2b3e1r1
+        //test cases
+        // ajfgtermzmvhgzcxmvuamn
+        // ermzmvhgzcxmvuamncvaeergsfsgzna
+        // ajfgtermzmvhgzcxmvuamncvaeergsfsgznaiudsfxzclkvjmxnmzmzvdnnvsdskg
+
+        int i = 0; // o(1)
+        int end = str.length(); //o(1)
+        HashMap<Character, Integer> mp = new HashMap<>(); //o(1)
+
+        while (i < end) { // o(n)
+            if (mp.containsKey(str.charAt(i))) { // o(1)
+                mp.put(str.charAt(i), mp.get(str.charAt(i)) + 1); // o(1)
+            } else {
+                mp.put(str.charAt(i), 1); // o(1)
+            }
+            i++;
+        }
+        mp.forEach((k, v) -> System.out.print("" + k + v)); //o(n)
+
+        // o(1) + o(n) + o(1) ... + o(n) = 2o(n) = o(n)
+    }
+
     public static void main(String[] args) {
         Main m = new Main();
 
-        int[] arr1 = {1, 5, 6, -5, 1, 0, 9, 0, 9, 7};
+        //int[] arr1 = {1, 5, 6, -5, 1, 0, 9, 0, 9, 7};
         //int[] arr1 = {8, 4, 1, 8, 3, 1, -3};
         //m.findDuplicates(arr1);
 
 //        int []arr1 = { 1, 8, 2, 9, 2};
-        int[] arr2 = {9, 7, 1, 6, 4};
+        //int[] arr2 = {9, 7, 1, 6, 4};
 
 //        m.mergeArrays(arr1, arr2);
 
         //m.factorial(-10);
 
-        System.out.println(m.checkPalindrome("AB"));
+        //System.out.println(m.checkPalindrome("AB"));
+        m.assignmentStringSortCount("ajfgtermzmvhgzcxmvuamncvaeergsfsgznaiudsfxzclkvjmxnmzmzvdnnvsdskg");
     }
 }
