@@ -99,6 +99,33 @@ public class Main {
         // o(1) + o(n) + o(1) ... + o(n) = 2o(n) = o(n)
     }
 
+    public void variableProg() {
+        String var = "my_name_is_add";
+        StringBuilder builder = new StringBuilder();
+
+        if (var.contains("_")) {
+            String []arr = var.split("_");
+            for (int i =0 ;i< arr.length ;i++) {
+                if(i != 0) {
+                    builder.append(String.valueOf(arr[i].charAt(0)).toUpperCase()).append(arr[i].substring(1));
+                }else {
+                    builder.append(arr[i]);
+                }
+            }
+
+        }else {
+            for (int i = 0; i < var.length(); i++) {
+                int ac = var.codePointAt(i);
+                if (ac < 97) {
+                    builder.append("_").append(var.charAt(i));
+                } else {
+                    builder.append(var.charAt(i));
+                }
+            }
+        }
+        System.out.print(" " + builder.toString());
+    }
+
     public static void main(String[] args) {
         Main m = new Main();
 
@@ -114,6 +141,8 @@ public class Main {
         //m.factorial(-10);
 
         //System.out.println(m.checkPalindrome("AB"));
-        m.assignmentStringSortCount("ajfgtermzmvhgzcxmvuamncvaeergsfsgznaiudsfxzclkvjmxnmzmzvdnnvsdskg");
+//        m.assignmentStringSortCount("ajfgtermzmvhgzcxmvuamncvaeergsfsgznaiudsfxzclkvjmxnmzmzvdnnvsdskg");
+
+        m.variableProg();
     }
 }
